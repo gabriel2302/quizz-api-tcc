@@ -1,5 +1,5 @@
-import { CreateTagUseCase } from "@/data/usecases/tag/create-tag"
-import { CreateTagRepositorySpy } from "../mocks"
+import { CreateTagUseCase } from '@/data/usecases/tag/create-tag'
+import { CreateTagRepositorySpy } from '../mocks'
 
 type SutTypes = {
   sut: CreateTagUseCase
@@ -28,7 +28,7 @@ describe('Create Tag Use Case', () => {
     expect(createTagRepositorySpy.params).toEqual(params)
   })
 
-  it ('should throw if CreateTagRepository throws', async () => {
+  it('should throw if CreateTagRepository throws', async () => {
     const { sut, createTagRepositorySpy } = makeSut()
     jest.spyOn(createTagRepositorySpy, 'create').mockRejectedValueOnce(new Error())
     const promise = sut.create({ tag_name: 'any_name', sk_tag: 'any_sk_tag' })

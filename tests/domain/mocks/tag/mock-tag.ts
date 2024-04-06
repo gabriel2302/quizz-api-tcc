@@ -1,4 +1,4 @@
-import { TagModel } from '@/domain/models/tag'
+import { type TagModel } from '@/domain/models/tag'
 import { faker } from '@faker-js/faker/locale/en'
 
 export const mockTag: TagModel = {
