@@ -26,5 +26,12 @@ describe('Create Tag Use Case', () => {
 
     await sut.create(params)
     expect(createTagRepositorySpy.params).toEqual(params)
-  }) 
+  })
+
+  it ('should throw if CreateTagRepository throws', async () => {
+    const { sut, createTagRepositorySpy } = makeSut()
+    jest.spyOn(createTagRepositorySpy, 'create').mockRejectedValueOnce(new Error())
+    const promise = sut.create({ tag_name: 'any_name', sk_tag: 'any_sk_tag' })
+    await expect(promise).rejects.toThrow()
+  })
 })
