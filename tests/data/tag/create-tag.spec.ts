@@ -54,12 +54,22 @@ describe('Create Tag Use Case', () => {
 
   it('should throw if IdGenerator throws', async () => {
     const { sut, idGeneratorSpy } = makeSut()
-
     jest.spyOn(idGeneratorSpy, 'generate').mockImplementationOnce(() => {
       throw new Error()
     })
-
     const promise = sut.create({ tag_name: 'any_name' })
     await expect(promise).rejects.toThrow()
+  })
+
+  it('should return a tag id on success', async () => {
+    const { sut, createTagRepositorySpy } = makeSut()
+
+    createTagRepositorySpy.result = {
+      sk_tag: 'any_sk_tag'
+    }
+
+    const result = await sut.create({ tag_name: 'any_name' })
+
+    expect(result).toEqual({ sk_tag: 'any_sk_tag' })
   })
 })
