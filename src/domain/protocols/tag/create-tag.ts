@@ -4,7 +4,6 @@ export interface CreateTag {
 
 export namespace CreateTag {
   export type Params = {
-    sk_tag: string
     tag_name: string
   }
   export type Result = {
